@@ -8,31 +8,26 @@ type Stack struct {
 }
 
 // Push an item into the stack
-func (s Stack) Push(data int) {
-	stack := &s
-	stackData := stack.data
-	length := len(stackData)
-	cap := cap(stackData)
+func (s Stack) Push(pt *Stack, data int) {
+	pt.data = append(s.data, data)
+}
 
-	if outOfSize := length+1 >= cap; outOfSize {
-		cap *= 2
-		newData := make([]int, cap)
-		for i, v := range stackData {
-			newData[i] = v
-		}
-		s.data = newData
-	}
-	s.data[length] = data
+// Pop an item from the stack
+func (s Stack) Pop(pt *Stack) {
+	pt.data = pt.data[0:len(pt.data)-1]
 }
 
 func newStack() Stack {
-	return Stack{make([]int, 1)}
+	var empty []int
+	return Stack{empty}
 }
 
 func main() {
 	stack := newStack()
-
-	stack.Push(1)
-
-	fmt.Println(stack.data)
+	pt := &stack
+	stack.Push(pt, 1)
+	stack.Push(pt, 2)
+	fmt.Println(stack)
+	stack.Pop(pt)
+	fmt.Println(stack)
 }
