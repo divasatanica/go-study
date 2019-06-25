@@ -8,13 +8,13 @@ type Stack struct {
 }
 
 // Push an item into the stack
-func (s Stack) Push(pt *Stack, data int) {
-	pt.data = append(s.data, data)
+func (s *Stack) Push(data int) {
+	s.data = append(s.data, data)
 }
 
 // Pop an item from the stack
-func (s Stack) Pop(pt *Stack) {
-	pt.data = pt.data[0:len(pt.data)-1]
+func (s *Stack) Pop() {
+	s.data = s.data[0 : len(s.data)-1]
 }
 
 func newStack() Stack {
@@ -25,9 +25,9 @@ func newStack() Stack {
 func main() {
 	stack := newStack()
 	pt := &stack
-	stack.Push(pt, 1)
-	stack.Push(pt, 2)
+	pt.Push(1)
+	pt.Push(2)
 	fmt.Println(stack)
-	stack.Pop(pt)
+	pt.Pop()
 	fmt.Println(stack)
 }
