@@ -4,30 +4,42 @@ import "fmt"
 
 // Stack implemented by array
 type Stack struct {
-	data []int
+	data   []int
+	length int
 }
 
 // Push an item into the stack
 func (s *Stack) Push(data int) {
 	s.data = append(s.data, data)
+	s.length++
 }
 
 // Pop an item from the stack
 func (s *Stack) Pop() {
-	s.data = s.data[0 : len(s.data)-1]
+	s.data = s.data[:len(s.data)-1]
+	s.length--
 }
 
-func newStack() Stack {
+// GetTop - Get stack's top element
+func (s *Stack) GetTop() int {
+	length := s.length
+	return s.data[length-1]
+}
+
+// NewStack - Get a new stack
+func NewStack() Stack {
 	var empty []int
-	return Stack{empty}
+	return Stack{empty, len(empty)}
 }
 
 func main() {
-	stack := newStack()
+	stack := NewStack()
 	pt := &stack
-	pt.Push(1)
+	pt.Push(5)
 	pt.Push(2)
-	fmt.Println(stack)
+	fmt.Println(stack, stack.length)
+	fmt.Println(pt.GetTop())
 	pt.Pop()
-	fmt.Println(stack)
+	fmt.Println(stack, stack.length)
+	fmt.Println(pt.GetTop())
 }
