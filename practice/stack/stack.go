@@ -34,12 +34,11 @@ func NewStack() Stack {
 
 func main() {
 	stack := NewStack()
-	pt := &stack
-	pt.Push(5)
-	pt.Push(2)
+	stack.Push(5)
+	stack.Push(2)
 	fmt.Println(stack, stack.length)
-	fmt.Println(pt.GetTop())
-	pt.Pop()
+	fmt.Println(stack.GetTop())
+	stack.Pop()
 	fmt.Println(stack, stack.length)
-	fmt.Println(pt.GetTop())
+	fmt.Println(stack.GetTop())
 }

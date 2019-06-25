@@ -28,11 +28,10 @@ func NewQueue() Queue {
 
 func main() {
 	queue := NewQueue()
-	q := &queue
 
-	q.Push(3)
-	q.Push(2)
-	fmt.Println(q, q.length)
-	q.Shift()
-	fmt.Println(q, q.length)
+	queue.Push(3)
+	queue.Push(2)
+	fmt.Println(queue, queue.length)
+	queue.Shift()
+	fmt.Println(queue, queue.length)
 }
